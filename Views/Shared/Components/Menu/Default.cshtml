@@ -1,0 +1,49 @@
+﻿@model MenuModal
+
+
+
+<header class="site-navbar" role="banner">
+    <div class="container-fluid" style="background-color:lightgray">
+        <div class="row align-items-center">
+
+            <div class="col-12 search-form-wrap js-search-form">
+                <form method="get" action="#">
+                    <input type="text" id="s" class="form-control" placeholder="Search...">
+                    <button class="search-btn" type="submit"><span class="icon-search"></span></button>
+                </form>
+            </div>
+
+            <div class="col-4 site-logo">
+                <a asp-action="HomePage" asp-controller="Home" class="text-black h2 mb-0">Seyahat Bloğu</a>
+            </div>
+
+            <div class="col-8 text-right">
+                <nav class="site-navigation" role="navigation">
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+
+                        <li><a asp-action="HomePage" asp-controller="Home">Ana Sayfa</a></li>
+                        <li><a asp-action="HomePage2" asp-controller="Home">Harita</a></li>
+                        <!-- <li><a asp-action="HomePage2" asp-controller="Home">Yazarlar</a></li>-->
+                        <li><a asp-action="AboutUs" asp-controller="User">Hakkımızda</a></li>
+
+                        @if (@Model.IsLoggedIn)
+                        {                     
+                            <li><a asp-action="UserProfil" asp-controller="User" asp-route-id="-1">@Model.NameSurname</a></li>
+                            <li><a asp-action="LogOut" asp-controller="User">Çıkış Yap</a></li> 
+                        }
+
+                        else
+                        {
+                            <li><a asp-action="NewUser" asp-controller="User">Yazar olun</a></li>
+                            <li><a asp-action="LoginView" asp-controller="User">Giriş Yap</a></li>
+                        }
+
+                        <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
+                    </ul>
+                </nav>
+                <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a>
+            </div>
+        </div>
+
+    </div>
+</header>

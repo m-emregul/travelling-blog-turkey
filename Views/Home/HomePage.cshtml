@@ -1,0 +1,77 @@
+﻿@using WebProject1.Models
+@model HomePageViewModel
+
+@{
+    ViewData["Title"] = "HomePage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--  DIVISION 1 -->
+<div class="site-section bg-dark">
+    <div style="text-align:center">
+
+        <p style="font-size:xx-large"> Haritadan Seç</p>
+        <a href="~/Home/HomePage2" class="btn btn-secondary btn-lg" role="button" aria-pressed="true">Harita</a>
+    </div>
+</div>
+<!-- btn btn-primary btn-lg active -->
+<!-- DIVISION 2 -->
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2>Son Gönderiler</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var x in Model.Posts)
+            {
+                <div class="col-lg-4 mb-4">
+
+                    <div class="entry2">
+                        <a asp-controller="Post" asp-action="DisplayPost" asp-route-id="@x.Id"><img src="~/images/img_1.jpg" alt="Image" class="img-fluid rounded"></a>
+                        <div class="excerpt">
+                            <span class="post-category text-white bg-secondary mb-3">@x.City.Name</span>
+
+                            <h2><a asp-controller="Post" asp-action="DisplayPost" asp-route-id="@x.Id">@x.Title</a></h2>
+                            <div class="post-meta align-items-center text-left clearfix">
+                                <figure class="author-figure mb-0 mr-3 float-left"><img src="~/images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+                                <span class="d-inline-block mt-1">By <a asp-controller="User" asp-action="UserProfil" asp-route-id="@x.UserId">@x.User.Name @x.User.Surname</a></span>
+                                <span>&nbsp;-&nbsp; @x.Date</span>
+                            </div>
+                            <p>
+                                @if (@x.Content.Length < 250)
+                                {
+                                    @for (int i = 0; i < @x.Content.Length; i++)
+                                    {@x.Content[@i]}
+                                }
+                                else
+                                {
+                                    @for (int i = 0; i < 250; i++)
+                                    {@x.Content[@i]}
+                                }
+
+                            </p>
+                            <p><a asp-controller="Post" asp-action="DisplayPost" asp-route-id="@x.Id">Yazının tamamını oku</a></p>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+      
+        <vc:pages total-item-count="@Model.TotalItemCount" current-page="@Model.CurrentPage"
+                  item-per-page="@Model.ItemPerPage" track="1"> </vc:pages>
+     
+
+    </div>
+</div>
+
+
+
+<div class="site-section bg-lightx" style="text-align:center">
+    <p style="font-size:xx-large"> Gez, Gör, Öğren! </p>
+</div>
+

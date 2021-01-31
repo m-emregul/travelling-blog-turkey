@@ -1,0 +1,260 @@
+﻿@using WebProject1.Models
+@model Tuple<Post, User, List<Post>>
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "DisplayPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('~/wwwroot/images/img_2.jpg');">
+    <div class="container">
+        <div class="row same-height justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="post-entry text-center">
+                    <span class="post-category text-white bg-success mb-3">@Model.Item1.City</span>
+                    <h1 class="mb-4"><a href="#"> @Model.Item1.Title </a></h1>
+                    <div class="post-meta align-items-center text-center">
+                        <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+                        <span class="d-inline-block mt-1">@Model.Item2.Name  </span>
+                        <span>&nbsp;-&nbsp; @Model.Item1.Date </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@if (User.Identity.IsAuthenticated && 
+                        @Model.Item2.Id == Int32.Parse(User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier).Value))
+{
+    <div style="display:flex; justify-content:flex-end; width:80%; padding:0;">
+        <a asp-controller="Post" asp-action="DeletePost" asp-route-idx=@Model.Item1.Id
+           class="btn btn-danger btn-lg" role="button" aria-pressed="true">Yazıyı Sil</a>
+    </div>
+}
+
+<section class="site-section py-lg">
+    <div class="container">
+
+        <div class="row blog-entries element-animate">
+
+            <div class="col-md-12 col-lg-8 main-content">
+
+                <div class="post-content-body">
+
+                    <p>@Model.Item1.Content </p>
+
+                    <div class="row mb-5 mt-5">
+                        <div class="col-md-12 mb-4">
+                            <img src="images/img_1.jpg" alt="Image placeholder" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <img src="images/img_2.jpg" alt="Image placeholder" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <img src="images/img_3.jpg" alt="Image placeholder" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="pt-5">
+                    <p>Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                </div>
+
+
+                <div class="pt-5">
+                    <h3 class="mb-5">6 Comments</h3>
+                    <ul class="comment-list">
+                        <li class="comment">
+                            <div class="vcard">
+                                <img src="~/images/person_1.jpg" alt="Image placeholder">
+                            </div>
+                            <div class="comment-body">
+                                <h3>Jean Doe</h3>
+                                <div class="meta">January 9, 2018 at 2:21pm</div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                <p><a href="#" class="reply rounded">Reply</a></p>
+                            </div>
+                        </li>
+
+                        <li class="comment">
+                            <div class="vcard">
+                                <img src="~/images/person_1.jpg" alt="Image placeholder">
+                            </div>
+                            <div class="comment-body">
+                                <h3>Jean Doe</h3>
+                                <div class="meta">January 9, 2018 at 2:21pm</div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                <p><a href="#" class="reply rounded">Reply</a></p>
+                            </div>
+
+                            <ul class="children">
+                                <li class="comment">
+                                    <div class="vcard">
+                                        <img src="~/images/person_1.jpg" alt="Image placeholder">
+                                    </div>
+                                    <div class="comment-body">
+                                        <h3>Jean Doe</h3>
+                                        <div class="meta">January 9, 2018 at 2:21pm</div>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                        <p><a href="#" class="reply rounded">Reply</a></p>
+                                    </div>
+
+
+                                    <ul class="children">
+                                        <li class="comment">
+                                            <div class="vcard">
+                                                <img src="images/person_1.jpg" alt="Image placeholder">
+                                            </div>
+                                            <div class="comment-body">
+                                                <h3>Jean Doe</h3>
+                                                <div class="meta">January 9, 2018 at 2:21pm</div>
+                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                                <p><a href="#" class="reply rounded">Reply</a></p>
+                                            </div>
+
+                                            <ul class="children">
+                                                <li class="comment">
+                                                    <div class="vcard">
+                                                        <img src="images/person_1.jpg" alt="Image placeholder">
+                                                    </div>
+                                                    <div class="comment-body">
+                                                        <h3>Jean Doe</h3>
+                                                        <div class="meta">January 9, 2018 at 2:21pm</div>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                                        <p><a href="#" class="reply rounded">Reply</a></p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="comment">
+                            <div class="vcard">
+                                <img src="images/person_1.jpg" alt="Image placeholder">
+                            </div>
+                            <div class="comment-body">
+                                <h3>Jean Doe</h3>
+                                <div class="meta">January 9, 2018 at 2:21pm</div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                <p><a href="#" class="reply rounded">Reply</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- END comment-list -->
+
+                    <div class="comment-form-wrap pt-5">
+                        <h3 class="mb-5">Leave a comment</h3>
+                        <form action="#" class="p-5 bg-light">
+                            <div class="form-group">
+                                <label for="name">Name *</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email *</label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="website">Website</label>
+                                <input type="url" class="form-control" id="website">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Post Comment" class="btn btn-primary">
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- END main-content -->
+
+            <div class="col-md-12 col-lg-4 sidebar">
+                <div class="sidebar-box search-form-wrap">
+                    <form action="#" class="search-form">
+                        <div class="form-group">
+                            <span class="icon fa fa-search"></span>
+                            <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                        </div>
+                    </form>
+                </div>
+                <!-- END sidebar-box -->
+                <div class="sidebar-box">
+                    <div class="bio text-center">
+
+
+                        <img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-5">
+                        <div class="bio-body">
+                            <h2>@Model.Item2.Name</h2>
+                            <p class="mb-4">@Model.Item2.Email</p>
+                            <p><a asp-controller="User" asp-action="UserProfil" asp-route-id="@Model.Item2.Id" class="btn btn-primary btn-sm rounded px-4 py-2">Profile Git</a></p>
+                            <p class="social">
+                                <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
+                                <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
+                                <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
+                                <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- END sidebar-box -->
+                <div class="sidebar-box">
+                    <h3 class="heading">Yazarın Diğer Gönderileri</h3>
+                    <div class="post-entry-sidebar">
+                        <ul>
+                            @foreach (var z in Model.Item3)
+                            {
+                                <li>
+                                    <a asp-controller="Post" asp-action="DisplayPost" asp-route-id="@z.Id">
+                                        <img src="~/images/img_1.jpg" alt="Image placeholder" class="mr-4">
+                                        <div class="text">
+                                            <h4>@z.Title</h4>
+                                            <div class="post-meta">
+                                                <span class="mr-2">@z.Date</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+                <!-- END sidebar-box -->
+
+                <div class="sidebar-box">
+                    <h3 class="heading">Tags</h3>
+                    <ul class="tags">
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Freelancing</a></li>
+                        <li><a href="#">Travel</a></li>
+                        <li><a href="#">Adventure</a></li>
+                        <li><a href="#">Food</a></li>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Business</a></li>
+                        <li><a href="#">Freelancing</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- END sidebar -->
+
+        </div>
+    </div>
+</section>
+

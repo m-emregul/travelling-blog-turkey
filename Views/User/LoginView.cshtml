@@ -1,0 +1,55 @@
+﻿@model LoginViewModel;
+@{
+    Layout = null;
+}
+
+
+<head>
+    <link rel="stylesheet" href="~/css/StyleSheetLogin.css">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+</head>
+
+<body>
+
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>Hoş Geldiniz<br><br><br> Giriş Yapın</h2>
+            <p></p>
+        </div>
+    </div>
+    <div class="main">
+
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                <form asp-controller="User" asp-action="LoginView"
+                      method="post">
+                    <div class="form-group">
+                        <label>Mail Adresi</label>
+                        <input asp-for="Email" type="text" class="form-control" placeholder="Mail Adresi"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Şifre</label>
+                        <input type="password" class="form-control" asp-for="Password" placeholder="Şifre"/>
+                    </div>
+                    <button type="submit" class="btn btn-black">Giriş Yap</button>
+                    <!--
+    <button asp-controller="User" asp-action="LoginView">Login</button>  -->
+                    <!--
+    <button type="submit" class="btn btn-secondary">Yazar Ol</button>
+    -->
+                </form>
+            </div>
+            <br />
+            <button type="button" class="btn btn-secondary"
+                onclick="location.href='@Url.Action("HomePage", "Home")'">
+                    Ana Sayfaya Dön
+            </button>
+            
+        </div>
+    </div>
+
+</body>

@@ -1,0 +1,74 @@
+﻿@using WebProject1.Models
+@model List<User>
+@{
+    ViewData["Title"] = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('images/img_4.jpg');">
+    <div class="container">
+        <div class="row same-height justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="post-entry text-center">
+                    <h1 class="">Hakkımızda</h1>
+                    <p class="lead mb-4 text-white"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 order-md-2">
+                <img src="~/images/trseyahat.jpg" alt="Image" class="img-fluid"> <!--~/images/img_1.jpg-->
+            </div>
+            <div class="col-md-5 mr-auto order-md-1">
+                <h2>Keşfetmeyi Seviyoruz</h2>
+                <p> [Site Hakkında Kısa Bir Yazı].</p>
+                <!--
+                <ul class="ul-check list-unstyled success">
+                    <li>Onsectetur adipisicing elit</li>
+                    <li>Dolorem saepe non eligendi possimus</li>
+                    <li>Voluptate odit corrupti vitae</li>
+                </ul>
+                    -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-5 text-center">
+                <h2>Yazarlar</h2>
+            </div>
+        </div>
+        <div class="row">
+
+            @foreach (var x in Model)
+            {
+                <div class="col-md-6 col-lg-4 mb-5 text-center">
+                    <img src="~/images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mb-4">
+                    <p>
+                        <span class="d-inline-block mt-1"><a asp-controller="User" asp-action="UserProfil" asp-route-id="@x.Id">@x.Name @x.Surname</a></span>
+                    </p>
+                    <!-- <h2 class="mb-3 h5">@x.Name @x.Surname</h2> -->
+                    <p>@x.Email</p>
+                    <p>@x.Status</p>
+                    <p class="mt-5">
+                        <a href="#" class="p-3"><span class="icon-facebook"></span></a>
+                        <a href="#" class="p-3"><span class="icon-instagram"></span></a>
+                        <a href="#" class="p-3"><span class="icon-twitter"></span></a>
+                    </p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+

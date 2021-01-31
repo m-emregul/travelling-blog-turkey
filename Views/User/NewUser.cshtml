@@ -1,0 +1,30 @@
+﻿@model WebProject1.Models.User
+@{
+    ViewData["Title"] = "NewUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="align-content-center">
+    <form class="form-group" method="post">
+        <br />
+
+        <p>---İsim</p>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        <br />
+        <p>---Soyisim</p>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        <br />
+        <p>---Email</p>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        <br />
+        <p>---Şifre</p>
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+        <br />
+
+
+        <button class="btn btn-info">Tamamla </button>
+
+    </form>
+</div>
+
+
