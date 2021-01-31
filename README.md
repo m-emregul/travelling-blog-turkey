@@ -6,7 +6,7 @@ This project allows everyone to share their travel experiences with others
 
 ## Description
 
-
+![alt text](https://github.com/m-emregul/travelling-blog-turkey/blob/master/wwwroot/images/Ekran%20Al%C4%B1nt%C4%B1s%C4%B1.PNG)
 <!---
 
 ## Getting Started
